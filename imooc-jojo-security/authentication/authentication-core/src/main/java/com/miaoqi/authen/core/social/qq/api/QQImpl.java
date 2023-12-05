@@ -39,12 +39,17 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ {
     }
 
     @Override
-    public QQUserInfo getuserInfo() throws IOException {
+    public QQUserInfo getuserInfo() {
         String url = String.format(URL_GET_USERINFO, this.appId, this.openId);
         // SpringSocial 会帮我们自动带上 accessToken 所以不用拼接
         String result = this.getRestTemplate().getForObject(url, String.class);
         System.out.println(result);
-        return this.objectMapper.readValue(result, QQUserInfo.class);
+
+        try {
+            return this.objectMapper.readValue(result, QQUserInfo.class);
+        } catch (IOException e) {
+            throw new RuntimeException("获取用户信息失败");
+        }
     }
 
 }

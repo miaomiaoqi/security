@@ -1,7 +1,5 @@
 package com.miaoqi.authen.core.social.qq.api;
 
-import java.io.IOException;
-
 /**
  * https://connect.qq.com/index.html
  *
@@ -10,6 +8,6 @@ import java.io.IOException;
  */
 public interface QQ {
 
-    QQUserInfo getuserInfo() throws IOException;
+    QQUserInfo getuserInfo();
 
 }
